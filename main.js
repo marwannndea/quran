@@ -151,7 +151,6 @@ function loadLastRead(){
         document.getElementById('last-ayah').textContent = `Ayah No. ${ayah}`;
     }
 }
-loadSurahs();
 loadLastRead();
 
 let menu = document.getElementById('menu');
