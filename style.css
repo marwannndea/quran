@@ -403,7 +403,7 @@ body{
 
 @media (max-width: 768px) {
      .content_surah{
-    width: 100%;
+    width: 90%;
     margin: 10px auto;
     padding: 10px 0;
     background: var(--white-color);
@@ -417,5 +417,8 @@ body{
     margin: 0;
     font-size: 14px;
     color: var(--text-color);
+}
+.content_surah .surah_name h3 span{
+    font-size: 12px;
 }
 }
