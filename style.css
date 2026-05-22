@@ -411,4 +411,7 @@ body{
 .content_surah .surah_name h3 span{
     font-size: 12px;
 }
+    .last_read_surah .container{
+    height: 200px;
+}
 }
