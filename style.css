@@ -413,4 +413,9 @@ body{
     border-bottom: 2px solid var(--border-color);
     transition: 0.1s ease-in-out;
 }
+    .content_surah .surah_name h3{
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-color);
+}
 }
