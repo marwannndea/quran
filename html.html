@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app-quran">
+        <div class="banner_top">
+           <div class="container">
+            <div class="logo_menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <div class="app_logo">
+               <a href="#"><img src="imgs/app_logo.png" alt=""></a>
+            </div>
+
+            <div class="logo_search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+           </div>
+        </div>
+        <div class="last_read_surah">
+            <div class="container">
+                <div class="quaran_logo">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h2>Last Read</h2>
+                </div>
+
+                <div class="titel_surah">
+                    <h1 id="last-surah-name">Al-Baqarah</h1>
+                </div>
+
+                <p id="last-ayah">Ayah No. 20</p>
+
+            </div>
+        </div>
+
+        <section class="section_top">
+             <div class="tab active_tab" id="surah-tab">
+                <a href="#"><p>surah</p></a>
+                <div class="border_bottom">
+                </div>
+             </div>
+
+             <div class="tab" id="juz-tab">
+                 <a href="#"><p>Juz'z</p></a>
+                 <div class="border_bottom">
+                </div>
+             </div>
+
+              <div class="tab" id="page-tab">
+                <a href="#"><p>Page</p></a>
+                <div class="border_bottom">
+                </div>
+             </div>
+        </section>
+      <div id="surah-container"></div>
+
+      <div class="div-surahs" id="single-surah"></div>
+
+      <div class="menu" id="menu">
+
+    <div class="menu_header">
+        <h2>Menu</h2>
+
+        <i class="fa-solid fa-xmark" id="close-menu"></i>
+    </div>
+
+    <ul>
+    <li>
+        <a href="#">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+    </li>
+
+    <li>
+        <a href="#">
+            <i class="fa-solid fa-book-quran"></i>
+            Surahs
+        </a>
+    </li>
+
+    <li>
+        <a href="#">
+            <i class="fa-solid fa-star"></i>
+            Favorites
+        </a>
+    </li>
+
+    <li>
+        <a href="#">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Last Read
+        </a>
+    </li>
+
+    <li>
+        <a href="#">
+            <i class="fa-solid fa-gear"></i>
+            Settings
+        </a>
+    </li>
+</ul>
+
+</div>
+        
+      <div class="header_top" id="header_top">
+
+        <div class="search_input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="search-input" placeholder="Search surah...">
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
