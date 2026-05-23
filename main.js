@@ -132,7 +132,8 @@ function showSurah(number, name) {
                 data-ayah="${ayah.numberInSurah}"
                 id="ayah-${ayah.numberInSurah}"
                 >
-                ${ayah.text} (${ayah.numberInSurah})
+                ${ayah.text
+                    .replace(/ٱللَّه/g, `<span class="allah-name">$&</span>`)} (${ayah.numberInSurah})
                 </p>
             `;
         });
