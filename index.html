@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="stylesheet" href="style.css">
+         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Document</title>
 </head>
@@ -48,18 +48,33 @@
              </div>
 
              <div class="tab" id="juz-tab">
-                 <a href="#"><p>Juz'z</p></a>
+                 <a href="#"><p>Listen</p></a>
                  <div class="border_bottom">
                 </div>
              </div>
 
               <div class="tab" id="page-tab">
-                <a href="#"><p>Page</p></a>
+                <a href="#"><p>Favorites</p></a>
                 <div class="border_bottom">
                 </div>
              </div>
         </section>
       <div id="surah-container"></div>
+
+
+      <div id="reciters-container"></div>
+
+      <div class="qarie-audio" id="qarie-audio">
+        <div class="surah-rading">
+            <h1>Al-Faatiha</h1>
+        </div>
+        <div class="surah-shose">
+            <select id="select-surah"></select>
+        </div>
+        <div class="surah-play">
+            <audio id="audio-player" controls></audio>
+        </div>
+      </div>
 
       <div class="div-surahs" id="single-surah"></div>
 
@@ -121,6 +136,6 @@
 
 
 
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
