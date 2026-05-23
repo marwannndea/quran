@@ -33,6 +33,7 @@ function loadSurahs() {
                 </div>
             `;
 
+
             container.appendChild(div);
 
             div.addEventListener('click', () => {
@@ -62,32 +63,47 @@ let tabs = document.querySelectorAll('.tab')
 
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
+
         tabs.forEach(t => t.classList.remove('active_tab'));
         tab.classList.add('active_tab');
-clearAllContent()
-document.getElementById('surah-container').style.display = 'block';
-         clearContainer();
+
+        clearAllContent();
+
+        // ❌ خبي كلشي أولاً
+        document.getElementById('surah-container').style.display = 'none';
+        document.getElementById('reciters-container').style.display = 'none';
+        document.getElementById('qarie-audio').style.display = 'none';
+        document.getElementById('single-surah').style.display = 'none';
+
         let id = tab.id;
 
-        if(id === 'surah-tab'){
+        // ✅ SURAH TAB
+        if (id === 'surah-tab') {
+            document.getElementById('surah-container').style.display = 'block';
             loadSurahs();
         }
 
+        // ✅ LISTEN TAB
         if (id === 'juz-tab') {
-            document.getElementById('surah-container').innerHTML =
-                "<h2>Juz section coming soon...</h2>";
+            document.getElementById('reciters-container').style.display = 'block';
+            loadReciters();
         }
 
+        // ✅ PAGE TAB
         if (id === 'page-tab') {
+            document.getElementById('surah-container').style.display = 'block';
             document.getElementById('surah-container').innerHTML =
                 "<h2>Page section coming soon...</h2>";
         }
 
-    })
-})
-
+    });
+});
 
 function showSurah(number, name) {
+
+      document.getElementById('reciters-container').style.display = 'none';
+    document.getElementById('qarie-audio').style.display = 'none';
+
     let container = document.getElementById('surah-container');
     let singleSurah = document.getElementById('single-surah');
 
@@ -120,6 +136,11 @@ function showSurah(number, name) {
                 </p>
             `;
         });
+
+        document.getElementById('reciters-container')
+        .style.display = 'none';
+        document.getElementById('qarie-audio')
+        .style.display = 'none';
 
         html += `</div>`;
 
@@ -194,3 +215,127 @@ searchInput.addEventListener('input', () => {
         }
     })
 })
+
+
+let selectedReciter = "";
+
+let audio = document.getElementById('audio-player');
+
+function getReciterCode(name){
+
+    const map = {
+        "Mishary Rashid Alafasy": "afs",
+        "Abdul Basit": "basit",
+        "Abdur-Rahman as-Sudais": "sds",
+        "Saud ash-Shuraym": "shuraym"
+    };
+
+    return map[name] || "afs";
+}
+
+function loadReciters(){
+
+    let container = document.getElementById('reciters-container');
+    container.innerHTML = '';
+
+    fetch('https://api.quran.com/api/v4/resources/recitations')
+    .then(res => res.json())
+    .then(data => {
+
+        data.recitations.forEach((reciter) => {
+
+            let div = document.createElement('div');
+            div.classList.add('qarie_container');
+
+            div.innerHTML = `
+                <img src="imgs/app_logo.png">
+
+                <div class="qarie_name">
+                    <h2>${reciter.reciter_name}</h2>
+                </div>
+
+                <div class="qarie_options">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+            `;
+
+            div.addEventListener('click', () => {
+
+                selectedReciter = reciter.reciter_name;
+
+                document.getElementById('reciters-container').style.display = 'none';
+                document.getElementById('qarie-audio').style.display = 'flex';
+
+                document.getElementById('reciter-name').textContent = reciter.reciter_name;
+
+                loadSurahSelect();
+            });
+
+            container.appendChild(div);
+        });
+
+    });
+}
+loadReciters();
+
+function loadSurahSelect(){
+
+    let select = document.getElementById('select-surah');
+    select.innerHTML = '';
+
+    fetch('https://api.alquran.cloud/v1/surah')
+    .then(res => res.json())
+    .then(data => {
+
+        data.data.forEach((surah) => {
+
+            let option = document.createElement('option');
+            option.value = surah.number;
+            option.textContent = surah.englishName;
+
+            select.appendChild(option);
+        });
+
+    });
+}
+
+let selectSurah =
+document.getElementById('select-surah');
+
+let audioPlayer =
+document.getElementById('audio-player');
+
+fetch('https://api.alquran.cloud/v1/surah')
+
+.then(res => res.json())
+
+.then(data => {
+
+    data.data.forEach((surah) => {
+
+        let option =
+        document.createElement('option');
+
+        option.value = surah.number;
+
+        option.textContent =
+        surah.englishName;
+
+        selectSurah.appendChild(option);
+
+    });
+
+});
+
+document.getElementById('select-surah')
+.addEventListener('change', (e) => {
+
+    let surahNumber = String(e.target.value).padStart(3, '0');
+
+    let reciterCode = getReciterCode(selectedReciter);
+
+    audio.src = `https://server8.mp3quran.net/${reciterCode}/${surahNumber}.mp3`;
+
+    audio.play();
+
+});
